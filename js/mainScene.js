@@ -7,6 +7,7 @@ class mainScene extends Phaser.Scene {
     
     preload() {
 
+    
     this.load.image('Casa1', 'assets/CasaMonstro/CasaMonstro1.png');
     this.load.image('Casa2', 'assets/CasaMonstro/CasaMonstro2.png');
     this.load.image('Casa3', 'assets/CasaMonstro/CasaMonstro3.png');
@@ -42,7 +43,7 @@ class mainScene extends Phaser.Scene {
     create() {
 
         
-
+        
         this.musicTheme = this.sound.add('theme');
         this.deathSounds = this.sound.add('death');
         this.overSounds = this.sound.add('over');
@@ -93,7 +94,7 @@ class mainScene extends Phaser.Scene {
 
 
     //player sprite
-    this.player = this.physics.add.sprite(110, 50 + (window.innerHeight/ 5), 'player').setImmovable(true);
+    this.player = this.physics.add.sprite(110, 50 + (window.innerHeight/ 6), 'player').setImmovable(true);
     this.player.setCollideWorldBounds(true);
     this.player.setAccelerationY(750);
     this.player.setScale(.75); 
@@ -137,17 +138,6 @@ class mainScene extends Phaser.Scene {
         on: false
     });
 
-    let particlesM = this.add.particles('explodeM');
-
-    this.emitterM = particlesM.createEmitter({
-        lifespan: 200,
-        tint: { start: 0xff0000, end: 0xffffff },
-        scale: { start: .04, end: .01, random: true },
-        alpha: { start: 1, end: 0 },
-        particleAngle: { start: 0, end: 360 },
-        active: true,
-        on : false
-    });
 
     let particlesA = this.add.particles('explodeA');
 
@@ -228,11 +218,11 @@ class mainScene extends Phaser.Scene {
     this.highScoreText = this.add.text(window.innerWidth/2.5 - 120, 30, "High Score "+ this.highScore, { fontFamily: 'Impact', fontSize: 14, color: '#ffd700'});
     this.livesText = this.add.text(window.innerWidth/2.5 - 200, window.innerHeight/2.5 - 50, " ");
     this.starsText = this.add.text(10, 150, "Stars ");
-    this.gameOverText = this.add.text(window.innerWidth / 5, -100, "Game Over", { fontFamily: 'Impact', fontSize: 64, color: '#fff'});
+    this.gameOverText = this.add.text(window.innerWidth / 6, -100, "Game Over", { fontFamily: 'Impact', fontSize: 64, color: '#fff'});
     this.gameOverText.setOrigin(0.5, 0.5);
-    this.clickText = this.add.text(window.innerWidth / 5, window.innerHeight / 2, "Click to Start", { fontFamily: 'Impact', fontSize: 32, color: '#fff'});
+    this.clickText = this.add.text(window.innerWidth / 6, window.innerHeight / 6, "Click to Start", { fontFamily: 'Impact', fontSize: 32, color: '#fff'});
     this.astText = this.add.text(100, 300, "", { fontFamily: 'Impact', fontSize: 16, color: '#fff'});
-    this.musicText = this.add.text(window.innerWidth / 5, window.innerHeight + 100, 'music on', { fontFamily: 'Impact', fontSize: 16, color: '#fff'});
+    this.musicText = this.add.text(window.innerWidth / 6, window.innerHeight/2.5 + 100, 'music on', { fontFamily: 'Impact', fontSize: 16, color: '#fff'});
   
     this.score = 0;
     this.highScore = 250;
@@ -273,7 +263,6 @@ update(delta) {
 
     //this.sPower = true;
 
-    
 
     this.engineSounds();
 
@@ -549,6 +538,7 @@ enemySet(){
             this.roarSounds.play();
         }
         if(this.mLives <= 0 && this.mDead == false){
+
             this.time.delayedCall(300, function(){
                 this.score = this.score + 1000;
                 this.mDead = true;
@@ -558,7 +548,7 @@ enemySet(){
             
             
         }
-        if(this.monstro.x <= (window.innerWidth + 500)&&this.mLives >= 0){
+        if(this.monstro.x <= (window.innerWidth/2.5 + 500)&&this.mLives >= 0){
             this.monstro.body.setVelocityX(0);
             this.monstro.body.setVelocityY(100);
             this.monstro.tint = 0xff0000;
@@ -570,7 +560,7 @@ enemySet(){
     }
 
         if(this.monstro.x <= -(window.innerWidth/2.5 + 500)){
-            this.monstro.x = (window.innerWidth/2.5 + 500);
+            this.monstro.x = (window.innerWidth/2.5 + 500);;
             this.monstro.y = 40 + Math.random() * window.innerHeight/2.5;
         }
         if(this.score >= 3200&& this.mLives > 0){
@@ -834,7 +824,7 @@ treasureHit(){
         this.newStar = true;
         this.stars += 1;
         this.score += 50;
-        this.treasure.x = window.innerHeight;
+        this.treasure.x = (window.innerWidth);
         this.treasure.y = Math.random() * (window.innerHeight/2.5 - 20) + 20;
 
         if(this.score >= 1000 && this.flash == false){       
@@ -907,8 +897,6 @@ resetBg(){
         this.thunderSounds.play();
         this.level1 = true;
         this.cameras.main.flash(500);
-        this.bg.x = 0;
-        this.bg2.x = 1024;
         this.bg.tint = 0xffffff;
         this.bg2.tint = 0xffffff;
         this.bg.setVelocityX(-this.score / 1000);
@@ -920,9 +908,8 @@ resetBg(){
         this.thunderSounds.play();
         this.level2 = true;
         this.cameras.main.flash(500);
-        this.bg.x = 0;
-        this.bg2.x = 1024;
-        this.bg.tint = 0x00ff00;
+
+        this.bg.tint = 0xffffff;
         this.bg2.tint = 0xffffff;
         this.bg.setVelocityX(-this.score / 2000);
         this.bg2.setVelocityX(-this.score / 2000);
@@ -982,7 +969,7 @@ resetBg(){
                 this.player.setScale(0);
             }   
         }
-        if(this.gameOverText.y == 320){
+        if(this.gameOverText.y == 300){
 
             this.gameOverText.y == this.gameOverText.y--;
             

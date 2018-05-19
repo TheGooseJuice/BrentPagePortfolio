@@ -1,7 +1,8 @@
 var config = {
     type: Phaser.AUTO,
-    width:   window.innerWidth,
-    height: window.innerHeight/2,
+    width:   window.innerWidth/2.5,
+    height: window.innerHeight/2.5,
+    
     physics: {
         default: 'arcade',
         arcade: {
@@ -13,3 +14,4 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
