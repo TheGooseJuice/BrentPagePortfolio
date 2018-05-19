@@ -15,3 +15,4 @@ var config = {
 
 var game = new Phaser.Game(config);
 game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
+game.screen.orientation.lock('landscape');

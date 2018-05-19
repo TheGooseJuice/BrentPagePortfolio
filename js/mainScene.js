@@ -311,14 +311,14 @@ update(delta) {
     this.monstroMove();
 
     if(this.start == true){
-        this.clickText.x = window.innerWidth + 200;
+        this.clickText.x = window.innerWidth/2 + 200;
         if(this.soundOn == false && this.soundBegin == true){
             this.soundOn = true;
             this.soundBegin = false;
         }
         
     }else{
-        this.clickText.x = window.innerWidth;
+        this.clickText.x = window.innerWidth/2;
         this.playTextWobble();
         this.soundBegin = true;
     }
