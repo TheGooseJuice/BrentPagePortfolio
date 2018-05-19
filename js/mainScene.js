@@ -72,7 +72,7 @@ class mainScene extends Phaser.Scene {
             repeat: -1
         });
     
-    this.monstro = this.physics.add.sprite( window.innerWidth/2.5 + 100, window.innerHeight/2.5 + 100, 'Casa1').play('monstro').setImmovable(true);
+    this.monstro = this.physics.add.sprite( window.innerWidth + 100, window.innerHeight5 + 100, 'Casa1').play('monstro').setImmovable(true);
     this.monstro.setScale(2.5);
     this.monstro.setSize(.1, .1, true);
 
@@ -94,14 +94,14 @@ class mainScene extends Phaser.Scene {
 
 
     //player sprite
-    this.player = this.physics.add.sprite(110, 50 + (window.innerHeight/ 6), 'player').setImmovable(true);
+    this.player = this.physics.add.sprite(110, 50 + (window.innerHeight/2), 'player').setImmovable(true);
     this.player.setCollideWorldBounds(true);
     this.player.setAccelerationY(750);
     this.player.setScale(.75); 
     this.player.setSize(25, 25, true);
 
     //bonus sprite
-    this.treasure = this.add.sprite(window.innerWidth/2.5 + 100, 250, 'treasure');
+    this.treasure = this.add.sprite(window.innerWidth + 100, 250, 'treasure');
     this.treasure.setScale(.25);
 
     //star counter sprites
@@ -204,7 +204,7 @@ class mainScene extends Phaser.Scene {
     //enemy group
     this.enemies = this.add.group();
         for(var i = 0; i < 4 ; i++){
-        this.enemies.create( (window.innerWidth/2.5 + 300) + Math.random()*(window.innerWidth/2.5 + 600), 10 + Math.random()* 300, 'dragon');               
+        this.enemies.create( (window.innerWidth + 300) + Math.random()*(window.innerWidth + 600), 10 + Math.random()* 300, 'dragon');               
     }
 
     //particles on ast
@@ -214,15 +214,15 @@ class mainScene extends Phaser.Scene {
     emitter5.startFollow(this.enemies.children.entries[3]);
 
     //score set up
-    this.scoreText = this.add.text(window.innerWidth/2.5 - 120, 10, "Score: "+ this.score, { fontFamily: 'Impact', fontSize: 20, color: '#fff'});
-    this.highScoreText = this.add.text(window.innerWidth/2.5 - 120, 30, "High Score "+ this.highScore, { fontFamily: 'Impact', fontSize: 14, color: '#ffd700'});
-    this.livesText = this.add.text(window.innerWidth/2.5 - 200, window.innerHeight/2.5 - 50, " ");
+    this.scoreText = this.add.text(window.innerWidth - 120, 10, "Score: "+ this.score, { fontFamily: 'Impact', fontSize: 20, color: '#fff'});
+    this.highScoreText = this.add.text(window.innerWidth - 120, 30, "High Score "+ this.highScore, { fontFamily: 'Impact', fontSize: 14, color: '#ffd700'});
+    this.livesText = this.add.text(window.innerWidth - 200, window.innerHeight - 50, " ");
     this.starsText = this.add.text(10, 150, "Stars ");
-    this.gameOverText = this.add.text(window.innerWidth / 6, -100, "Game Over", { fontFamily: 'Impact', fontSize: 64, color: '#fff'});
+    this.gameOverText = this.add.text(window.innerWidth / 2, -100, "Game Over", { fontFamily: 'Impact', fontSize: 64, color: '#fff'});
     this.gameOverText.setOrigin(0.5, 0.5);
-    this.clickText = this.add.text(window.innerWidth / 6, window.innerHeight / 6, "Click to Start", { fontFamily: 'Impact', fontSize: 32, color: '#fff'});
+    this.clickText = this.add.text(window.innerWidth / 2, window.innerHeight / 2, "Click to Start", { fontFamily: 'Impact', fontSize: 32, color: '#fff'});
     this.astText = this.add.text(100, 300, "", { fontFamily: 'Impact', fontSize: 16, color: '#fff'});
-    this.musicText = this.add.text(window.innerWidth / 6, window.innerHeight/2.5 + 100, 'music on', { fontFamily: 'Impact', fontSize: 16, color: '#fff'});
+    this.musicText = this.add.text(window.innerWidth / 2, window.innerHeight + 100, 'music on', { fontFamily: 'Impact', fontSize: 16, color: '#fff'});
   
     this.score = 0;
     this.highScore = 250;
@@ -311,14 +311,14 @@ update(delta) {
     this.monstroMove();
 
     if(this.start == true){
-        this.clickText.x = window.innerWidth/2.5 + 200;
+        this.clickText.x = window.innerWidth + 200;
         if(this.soundOn == false && this.soundBegin == true){
             this.soundOn = true;
             this.soundBegin = false;
         }
         
     }else{
-        this.clickText.x = window.innerWidth/5;
+        this.clickText.x = window.innerWidth;
         this.playTextWobble();
         this.soundBegin = true;
     }
@@ -333,11 +333,11 @@ engineSounds(){
     if (this.keyA.isDown && this.soundButt == false){
         this.soundOn = !this.soundOn;
         this.musicText.setText('Music ON');
-        this.musicText.y = window.innerHeight/2.5 - 200;
+        this.musicText.y = window.innerHeight - 200;
         this.musicText.y == this.musicText.y--;
         this.soundButt = true;
         this.time.delayedCall(500, function(){
-            this.musicText.y = window.innerHeight/2.5 + 200;
+            this.musicText.y = window.innerHeight + 200;
             this.soundButt = false      
         }, [], this);
     }
@@ -475,8 +475,8 @@ enemySet(){
 
         }        
         if(enemies[i].x <= -90 ){
-            enemies[i].x = Math.random() * (window.innerWidth/2.5 + 400)+(window.innerWidth/2.5 + 200);
-            enemies[i].y = 1 + Math.random() *  window.innerHeight/2.5;  
+            enemies[i].x = Math.random() * (window.innerWidth + 400)+(window.innerWidth + 200);
+            enemies[i].y = 1 + Math.random() *  window.innerHeight;  
             if(this.over == false){
                 this.score += 10;
             }           
@@ -484,7 +484,7 @@ enemySet(){
             this.astBoolReset();
         }
 
-        if(enemies[i].y <= -40 || enemies[i].y >= window.innerHeight/2.5 ){
+        if(enemies[i].y <= -40 || enemies[i].y >= window.innerHeight ){
             enemies[i].y == enemies[i].y--;
         }
 
@@ -493,10 +493,10 @@ enemySet(){
                 this.live == this.lives--;
                 this.stars == this.stars--;
                 this.playerHit();
-                this.enemies.children.entries[0].x = (window.innerWidth/2.5 + 200);
-                this.enemies.children.entries[1].x = (window.innerWidth/2.5 + 300);
-                this.enemies.children.entries[2].x = (window.innerWidth/2.5 + 400);
-                this.enemies.children.entries[3].x = (window.innerWidth/2.5 + 500);
+                this.enemies.children.entries[0].x = (window.innerWidth + 200);
+                this.enemies.children.entries[1].x = (window.innerWidth + 300);
+                this.enemies.children.entries[2].x = (window.innerWidth + 400);
+                this.enemies.children.entries[3].x = (window.innerWidth + 500);
             }else{                   
                 this.overTrue();
                 this.emitter.emitParticleAt(this.player.x , this.player.y);
@@ -514,10 +514,10 @@ enemySet(){
                 this.live == this.lives--;
                 this.stars == this.stars--;
                 this.playerHit();
-                this.enemies.children.entries[0].x = (window.innerWidth/2.5 + 500);
-                this.enemies.children.entries[1].x = (window.innerWidth/2.5 + 700);
-                this.enemies.children.entries[2].x = (window.innerWidth/2.5 + 300);
-                this.enemies.children.entries[3].x = (window.innerWidth/2.5 + 600);
+                this.enemies.children.entries[0].x = (window.innerWidth + 500);
+                this.enemies.children.entries[1].x = (window.innerWidth + 700);
+                this.enemies.children.entries[2].x = (window.innerWidth + 300);
+                this.enemies.children.entries[3].x = (window.innerWidth + 600);
                 this.monstro.x = 2000;
             }else{                   
                 this.overTrue();
@@ -548,7 +548,7 @@ enemySet(){
             
             
         }
-        if(this.monstro.x <= (window.innerWidth/2.5 + 500)&&this.mLives >= 0){
+        if(this.monstro.x <= (window.innerWidth + 500)&&this.mLives >= 0){
             this.monstro.body.setVelocityX(0);
             this.monstro.body.setVelocityY(100);
             this.monstro.tint = 0xff0000;
@@ -559,9 +559,9 @@ enemySet(){
         }
     }
 
-        if(this.monstro.x <= -(window.innerWidth/2.5 + 500)){
-            this.monstro.x = (window.innerWidth/2.5 + 500);;
-            this.monstro.y = 40 + Math.random() * window.innerHeight/2.5;
+        if(this.monstro.x <= -(window.innerWidth + 500)){
+            this.monstro.x = (window.innerWidth + 500);;
+            this.monstro.y = 40 + Math.random() * window.innerHeight;
         }
         if(this.score >= 3200&& this.mLives > 0){
             this.monstro.alpha += 1;
@@ -576,8 +576,8 @@ enemySet(){
 
             }
             this.time.delayedCall(600, function() {
-                this.monstro.x = (window.innerWidth/2.5 + 500);
-                this.monstro.y = (window.innerHeight/5);
+                this.monstro.x = (window.innerWidth + 500);
+                this.monstro.y = (window.innerHeight/2);
                 this.monstro.body.setVelocityY(0);
                 this.monstro.body.setVelocityX(0)
             }, [], this);
@@ -625,28 +625,28 @@ powerAst(){
 
 powerHitAst(){
     if(this.ast1 == true){
-        if(this.enemies.children.entries[0].y > (window.innerHeight/5)){
+        if(this.enemies.children.entries[0].y > (window.innerHeight/2)){
             this.enemies.children.entries[0].y += 4;
         }else{
             this.enemies.children.entries[0].y -= 4;
         }
     }
     if(this.ast2 == true){
-        if(this.enemies.children.entries[1].y >= (window.innerHeight/5)){
+        if(this.enemies.children.entries[1].y >= (window.innerHeight/2)){
             this.enemies.children.entries[1].y += 4;
         }else{
             this.enemies.children.entries[1].y -= 4;
         }
     }
     if(this.ast3 == true){
-        if(this.enemies.children.entries[2].y >= (window.innerHeight/5)){
+        if(this.enemies.children.entries[2].y >= (window.innerHeight/2)){
             this.enemies.children.entries[2].y += 4;
         }else{
             this.enemies.children.entries[2].y -= 4;
         }
     }
     if(this.ast4 == true){
-        if(this.enemies.children.entries[3].y >= (window.innerHeight/5)){
+        if(this.enemies.children.entries[3].y >= (window.innerHeight/2)){
             this.enemies.children.entries[3].y += 4;
         }else{
             this.enemies.children.entries[3].y -= 4;
@@ -824,8 +824,8 @@ treasureHit(){
         this.newStar = true;
         this.stars += 1;
         this.score += 50;
-        this.treasure.x = (window.innerWidth);
-        this.treasure.y = Math.random() * (window.innerHeight/2.5 - 20) + 20;
+        this.treasure.x = (window.innerWidth * 2);
+        this.treasure.y = Math.random() * (window.innerHeight - 20) + 20;
 
         if(this.score >= 1000 && this.flash == false){       
             this.changeBg();
@@ -982,11 +982,11 @@ resetBg(){
     playerIdol(){
 
         if(this.start == false){
-            if(this.player.y >= window.innerHeight/5){
+            if(this.player.y >= window.innerHeight/2){
                 this.player.body.setAccelerationY(-25);
             }
             
-            if(this.player.y <=  window.innerHeight/5){
+            if(this.player.y <=  window.innerHeight/2){
                 this.player.body.setAccelerationY(25);
             }
         }
@@ -1035,11 +1035,11 @@ resetBg(){
        
         this.score = 0;
         this.player.y = 150;
-        this.enemies.children.entries[0].x = Math.random() * (window.innerWidth/2.5 + 300) + (window.innerWidth/2.5 + 400);
-        this.enemies.children.entries[1].x = Math.random() * (window.innerWidth/2.5 + 300) + (window.innerWidth/2.5 + 400);
-        this.enemies.children.entries[2].x = Math.random() * (window.innerWidth/2.5 + 300) + (window.innerWidth/2.5 + 400);
-        this.enemies.children.entries[3].x = Math.random() * (window.innerWidth/2.5 + 300) + (window.innerWidth/2.5 + 400);
-        this.treasure.x = Math.random() * (window.innerWidth/2.5 + 300) + (window.innerWidth/2.5 + 400);
+        this.enemies.children.entries[0].x = Math.random() * (window.innerWidth + 300) + (window.innerWidth + 400);
+        this.enemies.children.entries[1].x = Math.random() * (window.innerWidth + 300) + (window.innerWidth + 400);
+        this.enemies.children.entries[2].x = Math.random() * (window.innerWidth + 300) + (window.innerWidth + 400);
+        this.enemies.children.entries[3].x = Math.random() * (window.innerWidth + 300) + (window.innerWidth + 400);
+        this.treasure.x = Math.random() * (window.innerWidth + 300) + (window.innerWidth + 400);
 
     };
 
