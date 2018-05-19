@@ -98,7 +98,7 @@ class mainScene extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.player.setAccelerationY(750);
     this.player.setScale(.75); 
-    this.player.setSize(25, 25, true);
+    this.player.setSize(window.innerWidth* 0.01, window.innerHeight* 0.2, true);
 
     //bonus sprite
     this.treasure = this.add.sprite(window.innerWidth + 100, 250, 'treasure');
@@ -311,7 +311,7 @@ update(delta) {
     this.monstroMove();
 
     if(this.start == true){
-        this.clickText.x = window.innerWidth/2 + 200;
+        this.clickText.x = window.innerWidth + 200;
         if(this.soundOn == false && this.soundBegin == true){
             this.soundOn = true;
             this.soundBegin = false;
