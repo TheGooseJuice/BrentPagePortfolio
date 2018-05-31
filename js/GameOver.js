@@ -5,7 +5,7 @@ class GameOver extends Phaser.Scene {
 
 
     create(){
-        this.coin = this.add.sprite(window.innerWidth/2 , window.innerHeight/2 , 'coin');
+        this.coin = this.add.sprite(innerWidth/2 , innerHeight/2 , 'coin');
         this.coin.setInteractive();
         this.coin.once('pointerup', function () {
 
@@ -15,7 +15,7 @@ class GameOver extends Phaser.Scene {
     }
 
     update(){
-        this.coin.setDisplaySize(window.innerWidth/18, window.innerHeight/10).setPosition(window.innerWidth/2,window.innerHeight/2);
+        this.coin.setDisplaySize(innerWidth/18, innerHeight/10).setPosition(innerWidth/2,innerHeight/2);
     }
     
 }

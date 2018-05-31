@@ -5,9 +5,9 @@ class GamePlay extends Phaser.Scene {
 
     create(){
 
-        this.bg = this.add.sprite(0, 0, 'back').setOrigin(0,0).setDisplaySize(window.innerWidth, window.innerHeight);
+        this.bg = this.add.sprite(0, 0, 'back').setOrigin(0,0).setDisplaySize(innerWidth, innerHeight);
 
-        this.coin = this.physics.add.sprite(window.innerWidth/2,window.innerHeight/4, 'space').setInteractive().setDisplaySize(window.innerWidth/18, window.innerHeight/10).setPosition(window.innerWidth/2, window.innerHeight/4).setCollideWorldBounds(true);
+        this.coin = this.physics.add.sprite(innerWidth/2,innerHeight/4, 'space').setInteractive().setDisplaySize(innerWidth/18, innerHeight/10).setPosition(innerWidth/2, innerHeight/4).setCollideWorldBounds(true);
         
             this.coin.once('pointerup', function () {
                 this.scene.start('GameOver');
@@ -21,12 +21,12 @@ class GamePlay extends Phaser.Scene {
     }
 
     sizeChange(){
-        this.bg.setDisplaySize(window.innerWidth, window.innerHeight);
-        this.coin.setDisplaySize(window.innerWidth/16, window.innerHeight/10);
+        this.bg.setDisplaySize(innerWidth, innerHeight);
+        this.coin.setDisplaySize(innerWidth/16, innerHeight/10);
     }
 
     setPosition(){
-       this.coin.setX(window.innerWidth/2);
+       this.coin.setX(innerWidth/2);
     }
 
     playerController(){
