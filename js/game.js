@@ -1,5 +1,5 @@
 var config = {
-    type: Phaser.AUTO,
+    type: Phaser.Headless,
     width: innerWidth,
     height: innerHeight,
     physics: {
