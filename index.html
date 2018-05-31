@@ -3,7 +3,7 @@
     <head>
         <title>Maybe Top down game</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
         
         <script type="text/javascript" src="js/phaser.js"></script>
         <script type="text/javascript" src="js/Preload.js"></script>
@@ -18,8 +18,21 @@
                 padding: 0px;
                 margin: 0px;             
             }
+            #turn{
+				width:100%;
+				height:100%;
+				position:fixed;
+				top:0px;
+				left:0px;
+				background-color:white;
+				background-image:url('playportrait.png');
+				background-repeat:no-repeat;
+				background-position: center center;
+				display:none;
+			}
         </style>
     </head>
-    <body>        
+    <body>  
+            <div id = "turn"></div>      
     </body>
 </html>
