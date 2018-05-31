@@ -23,7 +23,7 @@ class MainMenu extends Phaser.Scene {
     }
 
     playerBounds(){
-        if(this.coin.y >= window.innerHeight){
+        if(this.coin.y >= device.innerHeight){
             this.coin.setY(window.innerHeight);
         }
     }
