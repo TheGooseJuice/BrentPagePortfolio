@@ -1361,7 +1361,7 @@
 		input[type="reset"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: #56296b;
+			background-color: #573e64;
 			color: #fff !important;
 		}
 
@@ -1656,7 +1656,7 @@
 /* Nav */
 
 	#nav {
-		background-color: #25122e;
+		background-color: #402d49;
 		text-align: center;
 		position: fixed;
 		left: 0;
