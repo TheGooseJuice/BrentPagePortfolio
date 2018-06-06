@@ -1353,7 +1353,7 @@
 		text-shadow: -1px -1px 0.5px rgba(0, 0, 0, 0.5);
 		overflow: hidden;
 		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.5), inset 0px 2px 1px 0px rgba(255, 255, 255, 0.75);
-		background-color: rgb(77, 6, 117);
+		background-color: #371a44;
 	}
 
 		input[type="button"]:hover,
@@ -1361,7 +1361,7 @@
 		input[type="reset"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: #8e02df;
+			background-color: #56296b;
 			color: #fff !important;
 		}
 
@@ -1656,7 +1656,7 @@
 /* Nav */
 
 	#nav {
-		background-color: #2b0242;
+		background-color: #371a44;
 		text-align: center;
 		position: fixed;
 		left: 0;
